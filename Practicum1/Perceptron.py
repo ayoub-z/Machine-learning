@@ -3,6 +3,7 @@ class Perceptron:
 	def __init__(self):
 		self.weights = {}
 		self.bias = None
+		self.output = None
 
 	def set_weight(self, x: str, n: float, x2: str):
 		"""
@@ -40,16 +41,18 @@ class Perceptron:
 				# [{'O':0.5}][counter] and then further into [0.5][0]
 				weight = list(list(self.weights.values())[counter].values())[0]
 				sum += weight * 1
+		if sum >= self.bias:
+			self.output = 1
+		else:
+			self.output = 0
 
-		self.__str__(sum, input)
-
-	def __str__(self, sum: float, input: list):
+	def __str__(self, input):
 		"""
 		Prints the input combination with a "success" string if the result
 		is bigger than or equal to the bias. Otherwise prints out the input 
 		combination with a "failure" string.
 		"""
-		if sum >= self.bias:
-			print(f"Combination {input} returns True")
-		else:
-			print(f"Combination {input} returns False")
+		if self.output == 1:
+			print(f"Combination {input} returns 1")
+		elif self.output == 0:
+			print(f"Combination {input} returns 0")

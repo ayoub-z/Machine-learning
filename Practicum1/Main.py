@@ -20,8 +20,10 @@ class main:
 	perceptron1.set_bias(1.0)
 
 	# And finally activate the perceptron for every possible combination
+	# and print the result
 	for i in combinations2:
 		perceptron1.activate(i)
+		perceptron1.__str__(i)
 
 
 
@@ -36,7 +38,7 @@ class main:
 
 	for i in combinations2:
 		perceptron2.activate(i)
-
+		perceptron2.__str__(i)
 
 
 	# INVERT-gate
@@ -49,7 +51,7 @@ class main:
 
 	for i in combinations1:
 		perceptron3.activate(i)
-
+		perceptron3.__str__(i)
 
 
 	# NOR-gate
@@ -64,7 +66,7 @@ class main:
 
 	for i in combinations3:
 		perceptron4.activate(i)			
-
+		perceptron4.__str__(i)
 
 
 	# PARTY-PERCEPTRON
@@ -79,3 +81,4 @@ class main:
 
 	for i in combinations3:
 		perceptron5.activate(i)	
+		perceptron5.__str__(i)
