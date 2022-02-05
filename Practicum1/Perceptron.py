@@ -1,32 +1,22 @@
 class Perceptron: 
 
 	def __init__(self):
-		self.weights = {}
-		self.bias = None
-		self.output = None
+		self.weight = []
+		self.bias = None		
 
-	def set_weight(self, x: str, n: float, x2: str):
+	def set_weight(self, weights=list):
 		"""
-		x = initial neuron.
-		n = the weight linking both neurons.
-		x2 = neuron the weight will be linked to.
+		Set the weight.
+		"""		
+		self.weight = weights
 
-		Sets the weight in the form of a nested dict. Creates a dict with the 
-		key being the initial neuron and the value being another dict containing
-		the neuron it's linked to with the according weight.
-		Example: {'X1':{'X3':0.5}}
+	def set_bias(self, bias):
 		"""
-		weight = {}
-		weight[x2] = n
-		self.weights[x] = weight
+		Set the bias.
+		"""
+		self.bias = bias
 
-	def set_bias(self, n: float):
-		"""
-		Sets bias.
-		"""
-		self.bias = n
-
-	def activate(self, input: list):
+	def activate(self, input):
 		"""
 		Activation function. 
 		Takes a binary input, such as [0, 1] and matches them with their corresponding 
@@ -36,23 +26,15 @@ class Perceptron:
 		sum = 0
 		for counter, i in enumerate(input):
 			if i == 1:
-				# Extracts the corresponding weight.
-				# For example, it turns the dict {'X1':{'O':0.5}} into 
-				# [{'O':0.5}][counter] and then further into [0.5][0]
-				weight = list(list(self.weights.values())[counter].values())[0]
-				sum += weight * 1
-		if sum >= self.bias:
-			self.output = 1
-		else:
-			self.output = 0
+				sum += self.weight[counter] * i
+		return 1 if sum >= self.bias else 0
 
 	def __str__(self, input):
 		"""
-		Prints the input combination with a "success" string if the result
-		is bigger than or equal to the bias. Otherwise prints out the input 
-		combination with a "failure" string.
+		Prints the input combination and the output result.
 		"""
-		if self.output == 1:
-			print(f"Combination {input} returns 1")
-		elif self.output == 0:
-			print(f"Combination {input} returns 0")
+
+		print(f"Input {input} returns: {self.activate(input)}")
+
+# inputs = [[0, 1, 1], [0, 1, 0], [0, 0, 0]]
+# weights = [0.2, 0.3, 0.4]
