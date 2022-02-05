@@ -113,12 +113,12 @@ if __name__ == "__main__":
 
 	# Half adder
 	print("\n\n-----Half adder-----\n")
-	perceptron_network1 = PerceptronNetwork()
+	perceptron_network2 = PerceptronNetwork()
 
-	perceptron_network1.create_layers(2,[2], 2)
-	perceptron_network1.set_weight([[[1, 1], [1, 1]], [[1], [-1, 1]]])
-	perceptron_network1.set_bias([[1, 2], [1, 1]])
+	perceptron_network2.create_layers(2,[2], 2)
+	perceptron_network2.set_weight([[[1, 1], [1, 1]], [[1], [-1, 1]]])
+	perceptron_network2.set_bias([[1, 2], [1, 1]])
 
 	for i in combinations2:
-		perceptron_network1.activate(i)
-		perceptron_network1.__str__(i)	
+		perceptron_network2.activate(i)
+		perceptron_network2.__str__(i)	
