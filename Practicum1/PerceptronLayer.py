@@ -4,31 +4,30 @@ class PerceptronLayer:
 
 	def __init__(self):
 		self.perceptrons = []
+		self.num_outputs = None
 		self.output = []
+		self.bias = []
+		self.weights = []
 
-	def create_perceptrons(self, num_outputs):
+	def create_perceptrons(self, num_inputs, num_outputs):
 		"""
 		Create n number of Perceptrons and save them as objects in a list.
 		"""		
-		self.perceptrons = [Perceptron() for _ in range(num_outputs)]
+		self.perceptrons = [Perceptron() for _ in range(num_inputs)]
+		self.num_outputs = num_outputs
 
 	def set_weight(self, weights):
 		"""
 		Set the weight.
 		"""
-		if type(weights[0]) == list:
-			for counter, weight in enumerate(weights):
-				self.perceptrons[counter].set_weight(weight)
-		else:
-			self.perceptrons[0].set_weight(weights)
+		for counter, weight in enumerate(weights):
+			self.perceptrons[counter].set_weight(weight)
 
-	def set_bias(self, biases):
+	def set_bias(self, bias):
 		"""
 		Set the bias.
-		"""		
-		for counter, bias in enumerate (biases):
-			self.perceptrons[counter].set_bias(bias)
-
+		"""
+		self.bias = bias
 	def activate(self, input):
 		"""
 		Activation function. 
@@ -38,19 +37,21 @@ class PerceptronLayer:
 		This is done one by one for each weight in each neuron per Perceptron.
 		"""		
 		self.output = []
-		sum = [0 for _ in range(len(self.perceptrons))]
-		
+		sum = [0 for _ in range(self.num_outputs)]
 		for i in range(len(self.perceptrons)):
-			self.perceptrons[i].activate(input)
-			for counter, weight in enumerate(self.perceptrons[i].weight):
-				sum[counter] += input[counter] * weight
-
-		for i in range(len(self.perceptrons)):
-			if sum[i] - self.perceptrons[i].bias >= 0:
+			if type(self.perceptrons[i].weight) == list:
+				for counter, weight in enumerate(self.perceptrons[i].weight):		
+					if self.num_outputs > 1:
+						sum[counter] += input[i] * weight
+					else:
+						sum[0] += input[i] * weight
+			else:
+				sum[0] += input[i] * self.perceptrons[i].weight
+		for i in range(self.num_outputs):
+			if sum[i] - self.bias[i] >= 0:
 				self.output.append(1)
 			else:
 				self.output.append(0)
-
 		return self.output
 
 	def __str__(self, input):
