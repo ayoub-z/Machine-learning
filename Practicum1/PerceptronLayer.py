@@ -6,17 +6,15 @@ class PerceptronLayer:
 		self.perceptrons = []
 		self.num_inputs = None
 		self.output = []
-		self.bias = []
-		self.weights = []
 
-	def create_perceptrons(self, num_inputs, num_outputs):
+	def create_perceptrons(self, num_inputs: int, num_outputs: int):
 		"""
 		Create n number of Perceptrons and save them as objects in a list.
 		"""		
 		self.perceptrons = [Perceptron() for _ in range(num_outputs)]
 		self.num_inputs = num_inputs
 
-	def set_weight(self, weights):
+	def set_weight(self, weight: list):
 		"""
 		Set the weight.
 		Each Perceptron(output), gets a list of weights that correspond with itself.
@@ -26,20 +24,20 @@ class PerceptronLayer:
 		if len(self.perceptrons) > 1:
 			for i in range(len(self.perceptrons)):
 				temp_weight = []
-				for weight in (weights):
-					temp_weight.append(weight[i])
+				for w in (weight):
+					temp_weight.append(w[i])
 				self.perceptrons[i].set_weight(temp_weight)
 		else:
-			self.perceptrons[0].set_weight(weights)
+			self.perceptrons[0].set_weight(weight)
 
-	def set_bias(self, bias):
+	def set_bias(self, bias: list):
 		"""
 		Set the bias.
 		Each Perceptron(output) gets it's own bias.
 		"""
 		for i in range(len(self.perceptrons)):
 			self.perceptrons[i].bias = bias[i]
-	def activate(self, input):
+	def activate(self, input: list):
 		"""
 		Activation function. 
 		Takes a binary input, such as [0, 1] and matches them with their corresponding 
@@ -66,7 +64,7 @@ class PerceptronLayer:
 				self.output.append(0)
 		return self.output
 
-	def __str__(self, input):
+	def __str__(self, input: list):
 		"""
 		Prints the input combination and the output result.
 		"""

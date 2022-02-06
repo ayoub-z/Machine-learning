@@ -5,19 +5,19 @@ class Perceptron:
 		self.bias = None
 		self.sum = 0	
 
-	def set_weight(self, weights=list):
+	def set_weight(self, weights: list):
 		"""
 		Set the weight.
 		"""		
 		self.weight = weights
 
-	def set_bias(self, bias):
+	def set_bias(self, bias: list):
 		"""
 		Set the bias.
 		"""
 		self.bias = bias
 
-	def activate(self, input):
+	def activate(self, input: list):
 		"""
 		Activation function. 
 		Takes a binary input, such as [0, 1] and matches them with their corresponding 
@@ -28,7 +28,7 @@ class Perceptron:
 			self.sum += input[counter] * weight
 		return 1 if self.sum - self.bias >= 0 else 0
 
-	def __str__(self, input):
+	def __str__(self, input: list):
 		"""
 		Prints the input combination and the output result.
 		"""
