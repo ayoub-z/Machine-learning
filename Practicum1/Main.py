@@ -116,9 +116,9 @@ if __name__ == "__main__":
 	perceptron_network2 = PerceptronNetwork()
 
 	perceptron_network2.create_layers(2,[2], 2)
-	perceptron_network2.set_weight([[[1, 1], [1, 1]], [[1], [-1, 1]]])
+	perceptron_network2.set_weight([[[1, 1], [1, 1]], [[1, 0], [-1, 1]]])
 	perceptron_network2.set_bias([[1, 2], [1, 1]])
 
 	for i in combinations2:
 		perceptron_network2.activate(i)
-		perceptron_network2.__str__(i)	
+		perceptron_network2.__str__(i)
