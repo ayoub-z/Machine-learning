@@ -3,13 +3,13 @@ class Perceptron:
 	def __init__(self):
 		self.weight = []
 		self.bias = None
-		self.sum = 0	
+		self.sum = 0
 
-	def set_weight(self, weights: list):
+	def set_weight(self, weight: list):
 		"""
 		Set the weight.
 		"""		
-		self.weight = weights
+		self.weight = weight
 
 	def set_bias(self, bias: list):
 		"""
@@ -19,8 +19,8 @@ class Perceptron:
 
 	def activate(self, input: list):
 		"""
-		Activation function. 
-		Takes a binary input, such as [0, 1] and matches them with their corresponding 
+		Activation function.
+		Takes a binary input, such as [0, 1] and matches them with their corresponding
 		weights (in order). The inputs coupled with their weights is then summarized.
 		"""
 		self.sum = 0

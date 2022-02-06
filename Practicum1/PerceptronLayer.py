@@ -9,7 +9,7 @@ class PerceptronLayer:
 
 	def create_perceptrons(self, num_inputs: int, num_outputs: int):
 		"""
-		Create n number of Perceptrons and save them as objects in a list.
+		Create a Perceptron for every output and save it in a list.
 		"""		
 		self.perceptrons = [Perceptron() for _ in range(num_outputs)]
 		self.num_inputs = num_inputs
@@ -17,9 +17,9 @@ class PerceptronLayer:
 	def set_weight(self, weight: list):
 		"""
 		Set the weight.
-		Each Perceptron(output), gets a list of weights that correspond with itself.
-		Example: Consider the following weights: [[1, -1], [1, -1]] in a single layer.
-		The weights leading to output 0 here are: [1, 1] and the weights leading to output 1 are [-1, -1]
+		Each Perceptron(output), gets a list containing the weights of each neuron that's linked to itself.
+		Example: Consider the following weights: [[1, -1], [1, -1]] in a single layer with 2 neurons/ 2 outputs.
+		The weights leading to output 0 here are: [1, 1] and the weights leading to output 1 are [-1, -1].
 		"""
 		if len(self.perceptrons) > 1:
 			for i in range(len(self.perceptrons)):
@@ -33,28 +33,28 @@ class PerceptronLayer:
 	def set_bias(self, bias: list):
 		"""
 		Set the bias.
-		Each Perceptron(output) gets it's own bias.
+		Each Perceptron(output) has it's own bias.
 		"""
 		for i in range(len(self.perceptrons)):
 			self.perceptrons[i].bias = bias[i]
+
 	def activate(self, input: list):
 		"""
-		Activation function. 
-		Takes a binary input, such as [0, 1] and matches them with their corresponding 
-		weights (in order). The inputs are multiplied with their weights and are then summarized 
-		and compared with their respective bias(output neuron).
-		This is done one by one for each weight in each neuron per Perceptron.
-		"""		
+		Activation function.
+		Loop through every Perceptron(output) and match each input with it's weight.
+		Then multiply each input with it's respective weight and summarize them at the corresponding output(s).
+		At each output, if the total sum minus it's bias is greater than 0, the output is a 1, else a 0.
+		"""
 		self.output = []
 		sum = [0 for _ in range(len(self.perceptrons))]
-		for i in range(len(self.perceptrons)): # for each output
-			for j in range(self.num_inputs): # for each input
+
+		for i in range(len(self.perceptrons)): # For each output
+			for j in range(self.num_inputs): # For each input
 				if len(self.perceptrons) > 1:
+					# At neuron 0 for example, it's weight to each output(Perceptron) is saved
+					# on those outputs at index 0. Similarly for neuron 1 it's index 1, etc.
 					weight = self.perceptrons[i].weight[j]
-					if len(self.perceptrons) > 1:
-						sum[i] += input[j] * weight
-					else:
-						sum[0] += input[j] * weight
+					sum[i] += input[j] * weight
 				else:
 					sum[0] += input[j] * self.perceptrons[0].weight[j]
 		for i in range(len(self.perceptrons)):
