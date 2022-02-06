@@ -4,7 +4,7 @@ class PerceptronLayer:
 
 	def __init__(self):
 		self.perceptrons = []
-		self.num_outputs = None
+		self.num_inputs = None
 		self.output = []
 		self.bias = []
 		self.weights = []
@@ -13,21 +13,32 @@ class PerceptronLayer:
 		"""
 		Create n number of Perceptrons and save them as objects in a list.
 		"""		
-		self.perceptrons = [Perceptron() for _ in range(num_inputs)]
-		self.num_outputs = num_outputs
+		self.perceptrons = [Perceptron() for _ in range(num_outputs)]
+		self.num_inputs = num_inputs
 
 	def set_weight(self, weights):
 		"""
 		Set the weight.
+		Each Perceptron(output), gets a list of weights that correspond with itself.
+		Example: Consider the following weights: [[1, -1], [1, -1]] in a single layer.
+		The weights leading to output 0 here are: [1, 1] and the weights leading to output 1 are [-1, -1]
 		"""
-		for counter, weight in enumerate(weights):
-			self.perceptrons[counter].set_weight(weight)
+		if len(self.perceptrons) > 1:
+			for i in range(len(self.perceptrons)):
+				temp_weight = []
+				for weight in (weights):
+					temp_weight.append(weight[i])
+				self.perceptrons[i].set_weight(temp_weight)
+		else:
+			self.perceptrons[0].set_weight(weights)
 
 	def set_bias(self, bias):
 		"""
 		Set the bias.
+		Each Perceptron(output) gets it's own bias.
 		"""
-		self.bias = bias
+		for i in range(len(self.perceptrons)):
+			self.perceptrons[i].bias = bias[i]
 	def activate(self, input):
 		"""
 		Activation function. 
@@ -37,18 +48,19 @@ class PerceptronLayer:
 		This is done one by one for each weight in each neuron per Perceptron.
 		"""		
 		self.output = []
-		sum = [0 for _ in range(self.num_outputs)]
-		for i in range(len(self.perceptrons)):
-			if type(self.perceptrons[i].weight) == list:
-				for counter, weight in enumerate(self.perceptrons[i].weight):		
-					if self.num_outputs > 1:
-						sum[counter] += input[i] * weight
+		sum = [0 for _ in range(len(self.perceptrons))]
+		for i in range(len(self.perceptrons)): # for each output
+			for j in range(self.num_inputs): # for each input
+				if len(self.perceptrons) > 1:
+					weight = self.perceptrons[i].weight[j]
+					if len(self.perceptrons) > 1:
+						sum[i] += input[j] * weight
 					else:
-						sum[0] += input[i] * weight
-			else:
-				sum[0] += input[i] * self.perceptrons[i].weight
-		for i in range(self.num_outputs):
-			if sum[i] - self.bias[i] >= 0:
+						sum[0] += input[j] * weight
+				else:
+					sum[0] += input[j] * self.perceptrons[0].weight[j]
+		for i in range(len(self.perceptrons)):
+			if sum[i] - self.perceptrons[i].bias >= 0:
 				self.output.append(1)
 			else:
 				self.output.append(0)
@@ -58,4 +70,4 @@ class PerceptronLayer:
 		"""
 		Prints the input combination and the output result.
 		"""
-		print(f"Input {input} returns: {self.output}")		
+		print(f"Input {input} returns: {self.output}")
