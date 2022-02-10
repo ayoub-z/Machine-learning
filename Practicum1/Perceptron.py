@@ -21,7 +21,8 @@ class Perceptron:
 		"""
 		Activation function.
 		Takes a binary input, such as [0, 1] and matches them with their corresponding
-		weights (in order). The inputs coupled with their weights is then summarized.
+		weights (in the given order). The inputs coupled with their weights is then summarized.
+		And a 1 is returned if the sum is bigger than the bias, else a 0.
 		"""
 		self.sum = 0
 		for counter, weight in enumerate(self.weight):
