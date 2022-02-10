@@ -8,7 +8,7 @@ class Perceptron:
 	def set_weight(self, weight: list):
 		"""
 		Set the weight.
-		"""		
+		"""
 		self.weight = weight
 
 	def set_bias(self, bias: list):

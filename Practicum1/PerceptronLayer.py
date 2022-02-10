@@ -9,40 +9,40 @@ class PerceptronLayer:
 		self.bias = []
 		self.weight = []
 
-	def create_perceptrons(self, num_inputs, num_outputs):
+	def create_perceptrons(self, num_inputs: int, num_outputs: int):
 		"""
 		Create n(num_inputs) number of Perceptrons(neurons) and save them as objects in a list.
 		"""		
 		self.perceptrons = [Perceptron() for _ in range(num_inputs)]
 		self.num_outputs = num_outputs
 
-	def set_weight(self, weight):
+	def set_weight(self, weight: list):
 		"""
 		Set the weight(s).
 		"""
 		for counter, w in enumerate(weight):
 			self.perceptrons[counter].set_weight(w)
 
-	def set_bias(self, bias):
+	def set_bias(self, bias: list):
 		"""
 		Set the bias.
 		"""
 		self.bias = bias
 
-	def activate(self, input):
+	def activate(self, input: list):
 		"""
 		Activation function.
 		Loop through every Perceptron(neuron) and match each input with it's respective weight.
 		Multiply the inputs with their weights and summarize them at the corresponding output index.
 		At each output, if the total sum minus it's bias is greater than 0, the output is 1, else 0.
-		"""			
+		"""
 		self.output = []
 		sum = [0 for _ in range(self.num_outputs)]
 
 		for i in range(len(self.perceptrons)): # For every neuron
 			if self.num_outputs > 1: # If there is more than 1 output neuron
 				# then loop through the nested list containing the weights
-				for counter, weight in enumerate(self.perceptrons[i].weight):		
+				for counter, weight in enumerate(self.perceptrons[i].weight):
 					sum[counter] += input[i] * weight
 			else: # If there's only a single output neuron, add the
 				  # we we can't loop through a nested list, since there's only one list
@@ -54,8 +54,8 @@ class PerceptronLayer:
 				self.output.append(0)
 		return self.output
 
-	def __str__(self, input):
+	def __str__(self, input: list):
 		"""
 		Prints the input combination and the output result.
 		"""
-		print(f"Input {input} returns: {self.output}")		
+		print(f"Input {input} returns: {self.output}")
