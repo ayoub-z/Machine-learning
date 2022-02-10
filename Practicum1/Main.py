@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
 
 
-	# PARTY-PERCEPTRON
+	# PARTY-PERCEPTRON. Figure 2.8 from reader
 	print("\n\n-----PARTY-PERCEPTRON-----\n")
 	perceptron5 = Perceptron()
 

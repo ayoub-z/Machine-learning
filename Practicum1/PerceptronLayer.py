@@ -7,7 +7,7 @@ class PerceptronLayer:
 		self.num_outputs = None
 		self.output = []
 		self.bias = []
-		self.weights = []
+		self.weight = []
 
 	def create_perceptrons(self, num_inputs, num_outputs):
 		"""
@@ -16,12 +16,12 @@ class PerceptronLayer:
 		self.perceptrons = [Perceptron() for _ in range(num_inputs)]
 		self.num_outputs = num_outputs
 
-	def set_weight(self, weights):
+	def set_weight(self, weight):
 		"""
 		Set the weight(s).
 		"""
-		for counter, weight in enumerate(weights):
-			self.perceptrons[counter].set_weight(weight)
+		for counter, w in enumerate(weight):
+			self.perceptrons[counter].set_weight(w)
 
 	def set_bias(self, bias):
 		"""
