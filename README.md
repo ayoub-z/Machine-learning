@@ -9,7 +9,7 @@ Contains the following:
   - Main (Used to initialize Perceptrons/layers/network in order to test the code)
 -------------
 
-## Practicum 1: 
+## Practicum 2: 
 Contains the following:
   - Perceptron that is able to adjust it's own weights and bias with the learning rule
   - Jupyter notebook to test and validate the trained networks.
