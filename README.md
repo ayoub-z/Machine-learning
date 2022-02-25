@@ -16,5 +16,6 @@ Contains the following:
 -------------
 
 ## Practicum 3:
-Contains exactly the same as Practicum 1, except that it uses the Sigmoid activation function.
-Weights and biases for the XOR and HALF ADDER are adjusted.
+Contains the following:
+  - Exactly the same as Practicum 1, except that it uses the Sigmoid activation function. <br/>
+  - Weights and biases for the XOR and HALF ADDER are adjusted in the `main.py` in order to reach 0/1 outputs.
