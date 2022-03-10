@@ -53,6 +53,7 @@ class NeuronNetwork:
 		next_input = input
 		for i in range(len(self.Neuron_layers)):
 			next_input = self.Neuron_layers[i].activate(next_input)
+
 		self.output = next_input
 		return self.output
 
@@ -62,5 +63,4 @@ class NeuronNetwork:
 		"""
 		for counter, i in enumerate(self.output):
 			self.output[counter] = 1 if i >= 0.5 else 0
-
 		print(f"Input {input} returns: {self.output}")

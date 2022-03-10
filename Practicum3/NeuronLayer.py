@@ -56,5 +56,4 @@ class NeuronLayer:
 		"""
 		for counter, i in enumerate(self.output):
 			self.output[counter] = 1 if i >= 0.5 else 0
-
 		print(f"Input {input} returns: {self.output}")

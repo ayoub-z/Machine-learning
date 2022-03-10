@@ -37,6 +37,7 @@ class Neuron:
 
 		for counter, weight in enumerate(self.weight):
 			self.sum += input[counter] * weight	
+
 		output = self.sigmoid(self.sum + self.bias)
 		return output
 
@@ -45,5 +46,4 @@ class Neuron:
 		Prints the input combination and the output result.
 		"""
 		output = 1 if self.activate(input) >= 0.5 else 0
-
 		print(f"Input {input} returns: {output}")
