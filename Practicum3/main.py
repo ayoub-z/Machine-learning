@@ -1,6 +1,6 @@
-from Perceptron import Perceptron
-from PerceptronLayer import PerceptronLayer
-from PerceptronNetwork import PerceptronNetwork
+from Neuron import Neuron
+from NeuronLayer import NeuronLayer
+from NeuronNetwork import NeuronNetwork
 
 combinations1 = [[0], [1]]
 combinations2 = [[0, 0], [0, 1], [1, 0], [1, 1]]
@@ -15,114 +15,114 @@ if __name__ == "__main__":
 
 	# AND-gate
 	print("\n\n-----AND-GATE-----\n")
-	# Initialize the Perceptron
-	perceptron1 = Perceptron()
+	# Initialize the Neuron
+	Neuron1 = Neuron()
 
 	# Set the weights
-	perceptron1.set_weight([0.5, 0.5])
+	Neuron1.set_weight([0.5, 0.5])
 	# Set the bias(threshold)
-	perceptron1.set_bias(-1.0)
+	Neuron1.set_bias(-1.0)
 
-	# And finally activate the perceptron for every possible combination
+	# And finally activate the Neuron for every possible combination
 	# and print the result
 	for i in combinations2:
-		perceptron1.activate(i)
-		perceptron1.__str__(i)
+		Neuron1.activate(i)
+		Neuron1.__str__(i)
 
 
 
 	# OR-gate
 	print("\n\n-----OR-GATE-----\n")
-	perceptron2 = Perceptron()
+	Neuron2 = Neuron()
 
-	perceptron2.set_weight([0.5, 0.5])
-	perceptron2.set_bias(-0.5)
+	Neuron2.set_weight([0.5, 0.5])
+	Neuron2.set_bias(-0.5)
 
 	for i in combinations2:
-		perceptron2.activate(i)
-		perceptron2.__str__(i)
+		Neuron2.activate(i)
+		Neuron2.__str__(i)
 
 
 
 	# INVERT-gate
 	print("\n\n-----INVERT-GATE-----\n")
-	perceptron3 = Perceptron()
+	Neuron3 = Neuron()
 
-	perceptron3.set_weight([-1.0])
-	perceptron3.set_bias(0.5)
+	Neuron3.set_weight([-1.0])
+	Neuron3.set_bias(0.5)
 
 	for i in combinations1:
-		perceptron3.activate(i)
-		perceptron3.__str__(i)
+		Neuron3.activate(i)
+		Neuron3.__str__(i)
 
 
 
 	# NOR-gate
 	print("\n\n-----NOR-GATE-----\n")
-	perceptron4 = Perceptron()
+	Neuron4 = Neuron()
 
-	perceptron4.set_weight([-1.0, -1.0, -1.0])
-	perceptron4.set_bias(0)
-
-	for i in combinations3:
-		perceptron4.activate(i)			
-		perceptron4.__str__(i)
-
-
-
-	# PARTY-PERCEPTRON. Figure 2.8 from reader
-	print("\n\n-----PARTY-PERCEPTRON-----\n")
-	perceptron5 = Perceptron()
-
-	perceptron5.set_weight([0.6, 0.3, 0.2])
-	perceptron5.set_bias(-0.4)
+	Neuron4.set_weight([-1.0, -1.0, -1.0])
+	Neuron4.set_bias(0)
 
 	for i in combinations3:
-		perceptron5.activate(i)	
-		perceptron5.__str__(i)
+		Neuron4.activate(i)			
+		Neuron4.__str__(i)
 
 
 
-	# Testing PerceptronLayer with AND-gate 
-	print("\n\n-----AND-GATE PerceptronLayer-----\n")
-	# Initialize the PerceptronLayer
-	perceptron_layer1 = PerceptronLayer()
+	# PARTY-Neuron. Figure 2.8 from reader
+	print("\n\n-----PARTY-Neuron-----\n")
+	Neuron5 = Neuron()
 
-	# Initialize the Perceptrons
-	perceptron_layer1.create_perceptrons(2, 1)
+	Neuron5.set_weight([0.6, 0.3, 0.2])
+	Neuron5.set_bias(-0.4)
+
+	for i in combinations3:
+		Neuron5.activate(i)	
+		Neuron5.__str__(i)
+
+
+
+	# Testing NeuronLayer with AND-gate 
+	print("\n\n-----AND-GATE NeuronLayer-----\n")
+	# Initialize the NeuronLayer
+	Neuron_layer1 = NeuronLayer()
+
+	# Initialize the Neurons
+	Neuron_layer1.create_Neurons(2, 1)
 	# Set the weights
-	perceptron_layer1.set_weight([1, 1]) 
+	Neuron_layer1.set_weight([1, 1]) 
 	# Set the bias(threshold)
-	perceptron_layer1.set_bias([-2])
+	Neuron_layer1.set_bias([-2])
 
 	for i in combinations2:
-		perceptron_layer1.activate(i)
-		perceptron_layer1.__str__(i)
+		Neuron_layer1.activate(i)
+		Neuron_layer1.__str__(i)
 
 
 
 	# XOR-gate 
 	print("\n\n-----XOR-GATE-----\n")	
-	perceptron_network1 = PerceptronNetwork()
+	Neuron_network1 = NeuronNetwork()
 
-	perceptron_network1.create_layers(2,[2],1)
-	perceptron_network1.set_weight([[[100, -100], [-100, 100]], [100, 100]])
-	perceptron_network1.set_bias([[-100, -100], [-50]])
+	Neuron_network1.create_layers(2,[2],1)
+	Neuron_network1.set_weight([[[100, -100], [-100, 100]], [100, 100]])
+	Neuron_network1.set_bias([[-100, -100], [-50]])
 
 	for i in combinations2:
-		perceptron_network1.activate(i)
-		perceptron_network1.__str__(i)
+		Neuron_network1.activate(i)
+		Neuron_network1.__str__(i)
 
 
 
 	# Half adder
 	print("\n\n-----Half adder-----\n")
-	perceptron_network2 = PerceptronNetwork()
+	Neuron_network2 = NeuronNetwork()
 
-	perceptron_network2.create_layers(2,[2], 2)
-	perceptron_network2.set_weight([[[100, 100], [100, 100]], [[100, 0], [-100, 100]]])
-	perceptron_network2.set_bias([[-50, -100], [-50, -100]])
+	Neuron_network2.create_layers(2,[2], 2)
+	Neuron_network2.set_weight([[[100, 100], [100, 100]], [[100, 0], [-100, 100]]])
+	Neuron_network2.set_bias([[-50, -100], [-50, -100]])
 
 	for i in combinations2:
-		perceptron_network2.activate(i)
-		perceptron_network2.__str__(i)	
+		Neuron_network2.activate(i)
+		Neuron_network2.__str__(i)	
