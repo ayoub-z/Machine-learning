@@ -19,3 +19,10 @@ Contains the following:
 Contains the following:
   - Exactly the same as Practicum 1, except that it uses the Sigmoid activation function. <br/>
   - Weights and biases for the XOR and HALF ADDER are adjusted in the `main.py` in order to reach 0/1 outputs.
+
+## P4_backpropagation:
+Contains the following:
+  - Neuron with sigmoid activation function. 
+  - Neuron layer. Contains the hidden and/or the output layer(s) with all their neurons.
+  - Neuron network. Network is activated with feed_forward and is trained/updated with backpropagation.
+  - Jupyter notebook to train and test NN on certain datasets.
