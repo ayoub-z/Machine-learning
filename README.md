@@ -1,7 +1,7 @@
 # Machine-learning (neural networks)
 #### Repository for all machine learning assignments.
-In this repo we create a neural network from scratch (practicum 1-4).
-And use tensorflow to classify the 10 different classes of images in the CIFAR-10 dataset
+In this repo we create a neural network from scratch (P 1-4).
+And use tensorflow to classify the 10 different classes of images in the CIFAR-10 dataset (P5)
 
 
 ## P1_perceptron:
